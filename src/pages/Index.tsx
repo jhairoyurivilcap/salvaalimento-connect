@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Info, X } from "lucide-react";
 import Header from "@/components/Header";
 import SearchBar from "@/components/SearchBar";
 import CategoryChips from "@/components/CategoryChips";
@@ -9,6 +10,13 @@ import LoginView from "@/components/LoginView";
 import NotificationsView from "@/components/NotificationsView";
 import { products, categories, vendors, notifications } from "@/data/mockData";
 import { Product } from "@/types/product";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 type View = "home" | "product-detail" | "login" | "notifications";
 
@@ -88,6 +96,31 @@ const Index = () => {
       />
 
       <main className="container mx-auto px-4 py-6 space-y-6">
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors text-primary font-medium">
+              <Info className="w-5 h-5" />
+              ¿Quiénes somos?
+            </button>
+          </DialogTrigger>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold text-primary">¿Quiénes somos?</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                En <span className="font-semibold text-primary">Kumi</span>, creemos que la comida no debería tener un punto final en la basura, sino un nuevo comienzo en la mesa. Nacimos de una convicción simple pero poderosa: el desperdicio no es una opción cuando hay tantas necesidades por cubrir.
+              </p>
+              <p>
+                Somos una plataforma que actúa como puente entre los supermercados y la comunidad. Transformamos lo que antes se consideraba "pérdida" —productos próximos a vencer o excedentes— en oportunidades.
+              </p>
+              <p>
+                Nuestra misión es doble: facilitar el acceso a alimentos de calidad a precios reducidos para las familias y conectar recursos vitales. En <span className="font-semibold text-primary">Kumi</span>, impulsamos la economía circular, asegurando que cada alimento cumpla su propósito real: alimentar.
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+
         <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
         <CategoryChips
